@@ -38,6 +38,12 @@ Workflow `.github/workflows/build-ios.yml` собирает unsigned IPA на ma
 
 Workflow `.github/workflows/build-block-world.yml` собирает unsigned iOS IPA на GitHub macOS runner и упаковывает его в ZIP. После слияния изменений откройте **Actions**, выберите **Build Block World iOS IPA**, затем скачайте artifact `BlockWorld-download`. В ZIP лежит `BlockWorld.ipa` для Sideloadly.
 
+## GameDock
+
+Отдельный iOS лаунчер-компаньон лежит в `gamedock/`. Он хранит пользовательские HTTPS-ссылки на Roblox-игры и открывает их через официальный клиент Roblox; прямого подключения к серверам и модификации клиента нет. Запуск: `npm install --prefix gamedock`, затем `npm --prefix gamedock run dev`.
+
+Workflow `.github/workflows/build-gamedock.yml` собирает IPA и ZIP на GitHub Actions. После слияния изменений скачайте artifact `GameDock-download`; внутри будет `GameDock.ipa` для Sideloadly.
+
 ## Важно
 
 API-ключи сохраняются локально в браузере/приложении. Не используйте этот клиент для распространения ключа или публичного сервиса: для этого нужен серверный прокси. «Без ограничений» гарантировать нельзя: ограничения безопасности и квоты задают провайдер модели и Google. В системной инструкции нет дополнительных запретов на обычные вопросы и написание кода; достоверность ответов не гарантируется, поэтому проверяйте важные факты и код.

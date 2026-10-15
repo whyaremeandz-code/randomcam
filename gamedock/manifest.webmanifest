@@ -1,0 +1,15 @@
+{
+  "name": "GameDock",
+  "short_name": "GameDock",
+  "description": "Твои любимые игры Roblox в одном месте",
+  "lang": "ru",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#eef3e9",
+  "theme_color": "#eef3e9",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
