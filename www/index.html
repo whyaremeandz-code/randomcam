@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f4f5f0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="description" content="AI-помощник с поиском в интернете и генерацией кода." />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="stylesheet" href="/app.css" />
+    <title>Moment AI</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Moment AI, новый чат">
+          <span class="brand-mark" aria-hidden="true">m</span>
+          <span class="brand-name">moment<span> / ai</span></span>
+        </a>
+        <div class="top-actions">
+          <button class="icon-button" id="new-chat" type="button" aria-label="Новый чат" title="Новый чат">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+          </button>
+          <button class="icon-button" id="open-settings" type="button" aria-label="Настройки" title="Настройки">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" /><path d="m19.4 15 .1.1a1.7 1.7 0 1 1-2.4 2.4l-.1-.1a1.7 1.7 0 0 0-2.9 1.2v.2a1.7 1.7 0 1 1-3.4 0v-.2a1.7 1.7 0 0 0-2.9-1.2l-.1.1a1.7 1.7 0 1 1-2.4-2.4l.1-.1a1.7 1.7 0 0 0-1.2-2.9H4a1.7 1.7 0 1 1 0-3.4h.2a1.7 1.7 0 0 0 1.2-2.9l-.1-.1a1.7 1.7 0 1 1 2.4-2.4l.1.1a1.7 1.7 0 0 0 2.9-1.2V2a1.7 1.7 0 1 1 3.4 0v.2a1.7 1.7 0 0 0 2.9 1.2l.1-.1a1.7 1.7 0 1 1 2.4 2.4l-.1.1a1.7 1.7 0 0 0 1.2 2.9h.2a1.7 1.7 0 1 1 0 3.4h-.2a1.7 1.7 0 0 0-1.2 2.9Z" /></svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="conversation" id="conversation" aria-live="polite">
+        <div class="welcome" id="welcome">
+          <div class="welcome-kicker"><span></span> ПОМОЩНИК НА СВЯЗИ</div>
+          <h1>С чего<br />начнём?</h1>
+          <p>Идеи, факты, код. Спросите что угодно.</p>
+          <div class="suggestions" aria-label="Примеры запросов">
+            <button class="suggestion" type="button" data-prompt="Объясни простыми словами, как работают большие языковые модели">Объясни сложную тему <span>↗</span></button>
+            <button class="suggestion" type="button" data-prompt="Найди последние новости об искусственном интеллекте и кратко перескажи с источниками">Найди свежие новости <span>↗</span></button>
+            <button class="suggestion" type="button" data-prompt="Напиши на Python функцию, которая удаляет дубликаты из списка, сохраняя порядок. Добавь тесты.">Напиши код на Python <span>↗</span></button>
+          </div>
+        </div>
+        <div class="messages" id="messages"></div>
+      </section>
+
+      <footer class="composer-wrap">
+        <div class="composer-box">
+          <textarea id="prompt" rows="1" placeholder="Спросите о чём угодно..." aria-label="Ваш вопрос"></textarea>
+          <div class="composer-tools">
+            <label class="search-toggle" for="web-search">
+              <input id="web-search" type="checkbox" checked />
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3" /><path d="m16 16 4.3 4.3M8 10.8h5.6M10.8 8v5.6" /></svg>
+              <span>Поиск в сети</span>
+            </label>
+            <button id="send" class="send-button" type="button" aria-label="Отправить" title="Отправить">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" /></svg>
+            </button>
+          </div>
+        </div>
+        <p class="disclaimer">Ответы могут содержать ошибки. Проверяйте важные факты.</p>
+      </footer>
+    </main>
+
+    <dialog id="settings-dialog" class="settings-dialog">
+      <form method="dialog" class="settings-head">
+        <div><span class="eyebrow">ПОДКЛЮЧЕНИЕ</span><h2>Настройки</h2></div>
+        <button class="icon-button" aria-label="Закрыть настройки" value="close">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+        </button>
+      </form>
+      <form id="settings-form" class="settings-form">
+        <label>API URL
+          <input name="baseUrl" type="url" placeholder="https://openrouter.ai/api/v1" autocomplete="url" />
+        </label>
+        <label>Модель
+          <input name="model" type="text" placeholder="openai/gpt-4o-mini" autocomplete="off" required />
+        </label>
+        <label>API-ключ модели
+          <input name="apiKey" type="password" placeholder="Ключ вашего провайдера" autocomplete="off" />
+        </label>
+        <div class="settings-divider"><span>Google Programmable Search</span><span>необязательно</span></div>
+        <label>Google API key
+          <input name="googleKey" type="password" placeholder="Ключ Custom Search JSON API" autocomplete="off" />
+        </label>
+        <label>Search engine ID (CX)
+          <input name="searchEngineId" type="text" placeholder="Идентификатор поисковой системы" autocomplete="off" />
+        </label>
+        <p class="settings-note">Ключи хранятся только на этом устройстве. Не используйте их в публичных сборках.</p>
+        <button class="save-button" type="submit">Сохранить настройки</button>
+      </form>
+    </dialog>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
