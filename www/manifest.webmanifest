@@ -1,0 +1,10 @@
+{
+  "name": "Moment AI",
+  "short_name": "Moment AI",
+  "description": "AI-помощник с поиском в интернете и генерацией кода",
+  "lang": "ru",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f5f0",
+  "theme_color": "#f4f5f0"
+}

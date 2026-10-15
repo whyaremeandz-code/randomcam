@@ -1,0 +1,8 @@
+{
+  "appId": "com.randomcam.gamedock",
+  "appName": "GameDock",
+  "webDir": "dist",
+  "ios": {
+    "contentInset": "automatic"
+  }
+}

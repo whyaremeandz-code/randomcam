@@ -1,0 +1,8 @@
+{
+  "appId": "com.momentai.assistant",
+  "appName": "Moment AI",
+  "webDir": "www",
+  "ios": {
+    "contentInset": "automatic"
+  }
+}

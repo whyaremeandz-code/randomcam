@@ -1,0 +1,62 @@
+name: Build GameDock iOS IPA
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - build/ipa
+    paths:
+      - 'gamedock/**'
+      - '.github/workflows/build-gamedock.yml'
+
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: gamedock/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --prefix gamedock
+
+      - name: Build web app and icons
+        run: npm --prefix gamedock run build
+
+      - name: Sync Capacitor iOS project
+        run: cd gamedock && npx cap sync ios
+
+      - name: Build unsigned app
+        run: >-
+          xcodebuild
+          -workspace gamedock/ios/App/App.xcworkspace
+          -scheme App
+          -configuration Release
+          -destination 'generic/platform=iOS'
+          -derivedDataPath gamedock/build
+          CODE_SIGNING_ALLOWED=NO
+          build
+
+      - name: Package IPA inside ZIP
+        run: |
+          mkdir -p ipa/Payload
+          cp -R gamedock/build/Build/Products/Release-iphoneos/App.app ipa/Payload/
+          cd ipa
+          /usr/bin/zip -qry ../GameDock.ipa Payload
+          cd ..
+          /usr/bin/zip -qry GameDock-download.zip GameDock.ipa
+
+      - name: Upload ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: GameDock-download
+          path: GameDock-download.zip
+          if-no-files-found: error
+          retention-days: 7

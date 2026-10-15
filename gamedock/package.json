@@ -1,0 +1,24 @@
+{
+  "name": "gamedock-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "icons": "node scripts/generate-icons.mjs",
+    "build": "npm run icons && vite build",
+    "check": "node --check src/main.js && node --check scripts/generate-icons.mjs",
+    "ios:add": "cap add ios",
+    "ios:sync": "cap sync ios"
+  },
+  "dependencies": {
+    "@capacitor/app-launcher": "^7.0.2",
+    "@capacitor/core": "^7.6.9"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.6.9",
+    "@capacitor/ios": "^7.6.9",
+    "sharp": "^0.34.5",
+    "vite": "^6.4.4"
+  }
+}
