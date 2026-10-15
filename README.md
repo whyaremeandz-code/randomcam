@@ -32,6 +32,12 @@ npx cap open ios
 
 Workflow `.github/workflows/build-ios.yml` собирает unsigned IPA на macOS и кладёт его в ZIP. После отправки проекта в GitHub откройте вкладку **Actions**, выберите **Build unsigned iOS IPA** и запустите **Run workflow**. Когда задача завершится, скачайте artifact `MomentAI-download`, распакуйте `MomentAI-download.zip` и выберите `MomentAI.ipa` в Sideloadly на Windows. Для Sideloadly подпись выполняется вашим Apple ID.
 
+## Block World
+
+Отдельный оригинальный мобильный 3D sandbox-прототип находится в `block-world/`. Запуск: `npm install --prefix block-world`, затем `npm --prefix block-world run dev`. На Mac iOS-проект открывается командами из `block-world/README.md`.
+
+Workflow `.github/workflows/build-block-world.yml` собирает unsigned iOS IPA на GitHub macOS runner и упаковывает его в ZIP. После слияния изменений откройте **Actions**, выберите **Build Block World iOS IPA**, затем скачайте artifact `BlockWorld-download`. В ZIP лежит `BlockWorld.ipa` для Sideloadly.
+
 ## Важно
 
 API-ключи сохраняются локально в браузере/приложении. Не используйте этот клиент для распространения ключа или публичного сервиса: для этого нужен серверный прокси. «Без ограничений» гарантировать нельзя: ограничения безопасности и квоты задают провайдер модели и Google. В системной инструкции нет дополнительных запретов на обычные вопросы и написание кода; достоверность ответов не гарантируется, поэтому проверяйте важные факты и код.

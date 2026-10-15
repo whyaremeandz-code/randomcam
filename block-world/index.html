@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <meta name="theme-color" content="#a7e5de" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="description" content="Строй свой маленький мир в Block World." />
+    <title>Block World</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main class="game" aria-label="Block World">
+      <canvas id="world" aria-label="3D игровой мир"></canvas>
+      <div class="world-vignette" aria-hidden="true"></div>
+
+      <header class="hud">
+        <div class="world-title">
+          <span class="world-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <div><span class="eyebrow">ТВОЙ МИР</span><strong>Зелёный остров</strong></div>
+        </div>
+        <div class="build-count" aria-live="polite">
+          <span class="count-icon" aria-hidden="true">▧</span>
+          <span id="block-count">0</span>
+          <span class="count-label">блоков</span>
+        </div>
+      </header>
+
+      <div class="center-mark" aria-hidden="true"><span></span></div>
+
+      <section class="tool-panel" aria-label="Инструменты строительства">
+        <div class="tool-heading"><span class="eyebrow">МАТЕРИАЛ</span><span id="selected-name">Мята</span></div>
+        <div class="swatches" role="group" aria-label="Цвет блока">
+          <button class="swatch selected" type="button" data-color="#b9f36c" data-name="Лайм" aria-label="Лаймовый блок"></button>
+          <button class="swatch" type="button" data-color="#ff836f" data-name="Коралл" aria-label="Коралловый блок"></button>
+          <button class="swatch" type="button" data-color="#5cc9df" data-name="Голубой" aria-label="Голубой блок"></button>
+          <button class="swatch" type="button" data-color="#ffd568" data-name="Солнечный" aria-label="Жёлтый блок"></button>
+          <button class="swatch" type="button" data-color="#b59af4" data-name="Лаванда" aria-label="Лавандовый блок"></button>
+        </div>
+        <div class="tool-modes" role="group" aria-label="Действие">
+          <button class="mode active" type="button" data-mode="build" aria-pressed="true">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v14M3 10h14" /></svg><span>Строить</span>
+          </button>
+          <button class="mode" type="button" data-mode="erase" aria-pressed="false">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 11 7-7 6 6-7 7H6l-2-2v-4ZM8 15l5-5" /></svg><span>Убрать</span>
+          </button>
+        </div>
+      </section>
+
+      <div class="joystick-area" id="joystick" aria-label="Джойстик движения">
+        <div class="joystick-ring"><div class="joystick-knob" id="joystick-knob"></div></div>
+        <span class="control-caption">ДВИЖЕНИЕ</span>
+      </div>
+
+      <div class="action-controls">
+        <button id="jump" class="jump-button" type="button" aria-label="Прыгнуть" title="Прыгнуть">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" /></svg>
+          <span>Прыжок</span>
+        </button>
+        <button id="action" class="action-button" type="button" aria-label="Построить блок">
+          <svg id="action-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+          <span id="action-label">Поставить</span>
+        </button>
+      </div>
+
+      <div id="toast" class="toast" role="status" hidden></div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

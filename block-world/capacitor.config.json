@@ -1,0 +1,8 @@
+{
+  "appId": "com.randomcam.blockworld",
+  "appName": "Block World",
+  "webDir": "dist",
+  "ios": {
+    "contentInset": "automatic"
+  }
+}
