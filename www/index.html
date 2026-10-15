@@ -51,6 +51,10 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3" /><path d="m16 16 4.3 4.3M8 10.8h5.6M10.8 8v5.6" /></svg>
               <span>Поиск в сети</span>
             </label>
+            <button id="app-mode" class="mode-button" type="button" aria-pressed="false" title="Создать приложение для запуска на телефоне">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2" /><path d="M10 18.5h4" /></svg>
+              <span>Приложение</span>
+            </button>
             <button id="send" class="send-button" type="button" aria-label="Отправить" title="Отправить">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" /></svg>
             </button>
@@ -87,6 +91,16 @@
         <p class="settings-note">Ключи хранятся только на этом устройстве. Не используйте их в публичных сборках.</p>
         <button class="save-button" type="submit">Сохранить настройки</button>
       </form>
+    </dialog>
+
+    <dialog id="preview-dialog" class="preview-dialog">
+      <form method="dialog" class="preview-head">
+        <div><span class="eyebrow">MOMENT AI</span><h2>Предпросмотр</h2></div>
+        <button class="icon-button" aria-label="Закрыть предпросмотр" value="close">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+        </button>
+      </form>
+      <iframe id="app-preview" title="Предпросмотр созданного приложения" sandbox="allow-scripts"></iframe>
     </dialog>
 
     <script type="module" src="/app.js"></script>

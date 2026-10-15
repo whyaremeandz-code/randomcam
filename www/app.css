@@ -74,6 +74,11 @@ h1 { margin: 19px 0 10px; font: 500 clamp(52px, 9vw, 78px)/.91 'Newsreader', Geo
 .search-toggle svg { width: 16px; height: 16px; }
 .search-toggle:has(input:checked) { color: #365d36; }
 .search-toggle:has(input:focus-visible) { outline: 2px solid #789e4c; outline-offset: 4px; border-radius: 2px; }
+.mode-button { min-height: 34px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 0 9px; border: 1px solid transparent; border-radius: 7px; background: transparent; color: #647064; font-size: 11px; cursor: pointer; }
+.mode-button svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.mode-button:hover { background: #f1f3ed; }
+.mode-button[aria-pressed="true"] { border-color: #b5c889; background: #edf5dd; color: #365d36; }
+.mode-button:disabled { opacity: .5; cursor: wait; }
 .send-button { width: 34px; height: 34px; display: grid; place-items: center; border: 0; border-radius: 8px; background: var(--accent); cursor: pointer; transition: background .15s, transform .15s; }
 .send-button:hover { background: var(--accent-deep); transform: translateY(-1px); }
 .send-button:disabled { opacity: .45; cursor: wait; transform: none; }
@@ -91,6 +96,11 @@ h1 { margin: 19px 0 10px; font: 500 clamp(52px, 9vw, 78px)/.91 'Newsreader', Geo
 .settings-note { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.55; }
 .save-button { min-height: 42px; border: 0; border-radius: 6px; background: var(--ink); color: white; font-size: 12px; font-weight: 600; cursor: pointer; }
 .save-button:hover { background: #314139; }
+.preview-dialog { width: min(760px, calc(100vw - 20px)); max-width: none; max-height: min(90dvh, 820px); margin: auto; padding: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--ink); box-shadow: 0 22px 80px #18221c30; }
+.preview-dialog::backdrop { background: #15201985; backdrop-filter: blur(3px); }
+.preview-head { min-height: 63px; display: flex; align-items: center; justify-content: space-between; padding: 8px 14px 8px 19px; border-bottom: 1px solid var(--line); background: var(--paper); }
+.preview-head h2 { margin: 3px 0 0; font: 500 23px 'Newsreader', Georgia, serif; }
+.preview-dialog iframe { display: block; width: 100%; height: min(76dvh, 730px); border: 0; background: #fff; }
 .toast { position: fixed; left: 50%; bottom: calc(25px + env(safe-area-inset-bottom)); z-index: 5; max-width: calc(100vw - 32px); padding: 11px 15px; border-radius: 7px; background: #233329; color: white; font-size: 12px; transform: translateX(-50%); animation: arrive .2s ease both; }
 
 @keyframes arrive { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
@@ -109,6 +119,8 @@ h1 { margin: 19px 0 10px; font: 500 clamp(52px, 9vw, 78px)/.91 'Newsreader', Geo
   .composer-wrap { padding-top: 12px; }
   .settings-head { padding-right: 17px; padding-left: 17px; }
   .settings-form { padding-right: 17px; padding-left: 17px; }
+  .preview-dialog { width: 100vw; max-height: 94dvh; border-right: 0; border-left: 0; border-radius: 10px 10px 0 0; }
+  .preview-dialog iframe { height: 82dvh; }
 }
 
 @media (prefers-reduced-motion: reduce) {
